@@ -1,0 +1,1138 @@
+
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<!--[if lt IE 7]>
+<html lang="ru" class="lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]>
+<html lang="ru" class="lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]>
+<html lang="ru" class="lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!-->
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <title>Рахунок-фактура</title>
+
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="/resource/img/logo/favicon-icon-36x36.png"/>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.8.55/css/materialdesignicons.min.css" rel="stylesheet">
+
+<!--<link rel="stylesheet" href="//cdn.materialdesignicons.com/5.0.45/css/materialdesignicons.min.css">-->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://snipp.ru/plugins/treeview/jquery.treeview.css" media="none">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css"
+          integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9"
+          crossorigin="anonymous"
+          media="none">
+
+    <link rel="stylesheet" type="text/css"
+          href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
+    <link rel="stylesheet" href="/resource/uip/main/css/component.css"/>
+    <link rel="stylesheet" href="/resource/lib/steper/css/main.css"/>
+    <link rel="stylesheet" href="/resource/uip/main/css/mainCss.css"/>
+
+<link rel="stylesheet" href=""/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jssip/0.7.23/jssip.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
+
+    <script type="text/javascript"
+            src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
+
+
+<script src="/resource/lib/maskPhoneNumber/jquery.maskedinput.min.js"></script>
+    <script src="/resource/lib/jquery-treeview-master/jquery.treeview.js"></script>
+    <script type="text/javascript" src="/resource/uip/main/js/classie.js"></script>
+    <script type="text/javascript" src="/resource/uip/main/js/gnmenu.js"></script>
+    <script type="text/javascript" src="/resource/lib/steper/js/stepper.js"></script>
+    <script type="text/javascript" src="/resource/uip/main/js/main.js"></script>
+    <script type="text/javascript" src="/resource/uip/main/js/modalTemplateCreateOrder.js"></script>
+    <script type="text/javascript" src="/resource/uip/main/js/modalDoc.js"></script>
+    <script type="text/javascript" src="/resource/uip/main/js/modalAct.js"></script>
+    <script type="text/javascript" src="/resource/uip/voIp/simpl/release/SIPml-api.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<link rel="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" type="text/css"/>
+
+<link href="https://unpkg.com/multiple-select@1.3.1/dist/multiple-select.css" rel="stylesheet">
+<script src="https://unpkg.com/multiple-select@1.3.1/dist/multiple-select.js"></script>
+
+<script src=""></script>
+
+</head>
+<body class="PTSansRegular">    <style media='print' type='text/css'>  .noprint {
+    display: none;
+}</style>
+<main>
+<form class="noprint" id="dialog">
+    <div>
+        <div class="row my-2 " style="margin-left: 1cm; margin-right: 5mm; margin-top: 15mm">
+
+            <div class="col">
+                <div class="card alert-primary">
+                    <div class="row">
+
+                        <div class="col-2" style="margin-left: 20px;  margin-top: 5px; margin-bottom: 5px;
+                         border: 1px solid #FFBEBE; border-radius: .25rem; vertical-align: middle;">
+                            <div>
+                                <input type="radio" name="signBudget" value="0" checked="checked"
+                                       id="noBudget"
+                                       onchange="setBudgetDate();">
+                                <label for="noBudget" style="vertical-align: middle;">Госпрозрахунок </label>
+                            </div>
+                            <div>
+                                <input type="radio" name="signBudget" value="1"
+                                       id="Budget" style="vertical-align: middle;"
+                                       onchange="setBudgetDate();">
+                                <label for="Budget" style="vertical-align: middle;">Бюджет </label>
+                            </div>
+                        </div>
+                        <div class="col-2" style="margin-left: 5px;  margin-top: 5px; margin-bottom: 5px;
+                         border: 1px solid #FFBEBE; border-radius: .25rem; vertical-align: middle;">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="printAct" onchange="setPrintAct()">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Додати Акт\Видаткову
+                                </label>
+                            </div>                                    <select class="form-control form-control-sm" name="typeShablonDog" id="typeShablonDog" onchange="getShablonDog();">
+                <option value='0'>Додати договір</option>
+                <option value='1'>ПО M.E.Doc</option>
+                <option value='16'>M.E.Doc Послуги</option>
+                <option value='39'>АЦСК "Україна" (госпрозрахунок)</option>
+                <option value='40'>АЦСК "Україна" (бюджет)</option>
+                <option value='46'>CloudKey (бюджет)</option>
+                
+                <option value='7'>ІСПРО ліцензія НОВА</option>
+                <option value='8'>ІСПРО ліцензія ПОДОВЖЕННЯ</option>
+                <option value='9'>ІСПРО Адаптація</option>
+                <option value='10'>ІСПРО Пакетне обслуговування</option>
+                <option value='11'>ІСПРО Разові послуги</option>
+                <option value='41'>ТОКЕНИ</option>
+                <option value='14'>КАРД-РІДЕРИ</option>
+               
+                
+                <option value='18'>Антивірус</option>
+                <option value='19'>FlyDoc</option> 
+                <!--<option value='20'>ІІТ (Бюджет)</option>-->         
+                <!--<option value='21'>ІІТ</option>-->       
+                <option value='22'>Документ навігатор</option>  
+                <option value='37'>ПП СОТА</option>               
+                <option value='38'>CASHALOT</option>       
+                <!--<option value='2'>АЦСК (госп.)(старий: до 31.10.2020)</option>-->
+                <!--<option value='3'>АЦСК (бюджет)(старий: до 31.10.2020)</option>-->
+                <!--<option value='17'>СОТА(старий: до 31.08.2020)</option>--> 
+                <!--<option value='12'>ТОКЕНИ (старий: до 18.11.2020)</option>-->             
+            </select>
+                        </div>
+                        <div class="col-2" style="margin-left: 5px;  margin-top: 5px; margin-bottom: 5px;
+                         border: 1px solid #FFBEBE; border-radius: .25rem; vertical-align: middle;">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" id="printDate"
+                                       onchange="setPrintDate();">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Термін Дії
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="row">
+                                <button type="button"
+                                        style="margin-left: 5px; margin-top: 4px;"
+                                        class="btn btn-outline-success btn-sm btn-block"
+                                        id="buttonPrint"
+                                        onclick="window.print()">Друк
+                                </button>
+                            </div>
+
+                            <div class="row">
+                                <button type="button"
+                                        style="margin-left: 5px; margin-top: 3px; margin-bottom: 2px;"
+                                        class="btn btn-outline-success btn-sm btn-block"
+                                        id="buttonExp"
+                                        onclick="expPDF();">Експорт PDF
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col" style="border: 1px solid #FFBEBE; border-radius: .25rem; margin-right: 20px;
+                            margin-top: 5px; margin-bottom: 5px; margin-left: 15px;">
+                            <div class="row" style="align-items: center; vertical-align: center;">
+
+                                <div class="col-4" style="margin-top: 15px; margin-bottom: 15px;">
+
+                                    <button style="max-height: 30px; "
+                                            type="button"
+                                            id="buttonMail"
+                                            class="btn btn-danger btn-sm "
+                                            disabled
+                                            onclick="mailPDF();">Відправити email
+                                    </button>
+
+                                </div>
+
+                                <div class="col-3"
+                                     style="margin-top: 15px; margin-bottom: 15px;  padding-left: 0px; padding-right: 0px;">
+
+                                    <div class="btn btn-primary btn-sm"
+                                         style="max-height: 30px; "
+                                         onclick="addNewAgentOfficials('2003')"
+                                         data-toggle="tooltip" data-placement="top"
+                                         title="Додати e-mail для відправки">
+                                        <p class="mdi" aria-hidden="true">Додати email</p>
+
+                                    </div>
+                                </div>
+
+                                <div id="sendMail" class="col-5"
+                                     style="margin-top: 15px; margin-bottom: 15px;  padding-left: 0px; padding-right: 0px;">
+
+                                    <div class="col-12">
+                                        <select id="inputEmail" name="product"
+                                                style=" width: 142px; height: 32px;"
+                                                onchange="validate();"
+                                                placeholder="...очікую e-mail"><option value="vetlabsumy@ukr.net">vetlabsumy@ukr.net</option><option value="legeza.vetlab@ukr.net">legeza.vetlab@ukr.net</option><option value=""></option></select>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="divDopText">
+                        <label style="font-family:Times New Roman,Times,serif; font-size:11pt; display: flex; ">
+                            <input type="checkbox" name="listDocAcsk" value="1"
+                                   style=" margin-left: 10px; margin-right: 5px; margin-top: 5px; margin-bottom: 0px; "
+                                   id="listDocAcsk" onchange="setAcskDoc()">
+                            <b> Друкувати "Перелік документів для оформлення КЕП"</b>
+                        </label>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+<div>
+    <div class="row my-2" style="margin-left: 1cm; margin-right: 5mm; margin-top: 15mm">
+
+        <div class="col">
+
+            <div>
+
+                <div id="shablon" style="margin-left: 15px; margin-right: 15px;">
+                    <div style="width: 100%">
+<div style="width:30%;float:right;">
+<!--    <div style="float:left;text-align:left; width:50%; padding-top: 15px;">
+    <div id="Budget1" style="float:right; width:50%;">
+          <img  src="/resource/img/logo/logo2020ukr.png" style="float:right; width:150px;" alt="" /></div>
+</div>-->
+<div style="float:right; text-align:left; width:100%; padding-top: 15px; margin-right: 5%;">
+    <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt; color: #2c2c54;" ><strong> ГК “Інтелектуальний сервіс”</strong></span><br>
+    <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt; color: #2c2c54" ><strong>прості рішення складних задач</strong></span><br>
+    <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt; color: #2c2c54" ><strong>intelserv.net.ua</strong></strong></span><br>
+    <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt;" >(095) 0364004</span><br>
+    <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt;" >(098) 0364004</span><br>
+    <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt;" >(073) 0364004</span><br>
+</div>
+<!--  <div style="float:right; text-align:left; width:100%; padding-top: 15px; margin-right: 5%;">
+ <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt; color: #2c2c54;" ><strong> ГК “Інтелектуальний сервіс”</strong></span><br>
+ <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt; color: #2c2c54" ><strong>прості рішення складних задач</strong></span><br>
+ <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt; color: #2c2c54" ><strong>intelserv.net.ua</strong></strong></span><br>
+ <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt;" >(095) 0364004</span><br>
+ <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt;" >(098) 0364004</span><br>
+ <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt;" >(073) 0364004</span><br>
+</div>-->
+<!--       <div style="float:right; width:100%; padding-top: 15px; margin-right: 5%;">
+        <span style="font-family:'Nunito Sans',Times New Roman,Times,serif;text-align:center;  font-size:10pt; color: #2c2c54;" ><strong>Контактна інформація:</strong></span><br>
+        <span style="font-family:'Nunito Sans',Times New Roman,Times,serif;text-align:center;  font-size:10pt; color: #2c2c54" ><strong> Vodafone: (095) 036-40-04</strong></span><br>
+        <span style="font-family:'Nunito Sans',Times New Roman,Times,serif;font-size:10pt; color: #2c2c54" ><strong> KyivStar:&nbsp;&nbsp; (098) 036-40-04</strong></span><br>
+        <span style="font-family:'Nunito Sans',Times New Roman,Times,serif;font-size:10pt; color: #2c2c54" ><strong> lifecell:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (073) 036-40-04</strong></span><br>
+        <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt;" >Для отримання КЕП чекаємо Вас за адресою:</span><br>
+        <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt;" >вул. Полтавський Шлях буд. 152 м. Харків.</span><br>
+    </div>-->
+
+</div>
+<div style="width:15%;float:right;"><div style="float:right; text-align:right; width:30%; padding-top: 15px;font-size:28pt;">
+<!--<div id="Budget1" style="float:right; width:50%;">
+          <img  src="/resource/img/logo/logo2020ukr.png" style="float:right; width:150px;" alt="" /></div>2--> <div id="Budget1" style="float:right; width:50%;">
+          <img  src="/resource/img/logo/logo2020ukr.png" style="float:right; width:150px;" alt="" /></div>
+<!-- <a href="sample.html"><img src="C:\Users\u1\Desktop\liberty.png" width="140" height="110"  alt="Пример"></a>-->
+</div></div>
+<div style="width:55%; float: left">
+<div style="width:100%">
+<div style="float:left; text-align:left; width:50%; padding-top: 15px;">
+ <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:13pt; padding-left: 0px;"><strong>Рахунок-фактура <br>№ПИП026091</strong></span><br>
+ <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:12pt; padding-left: 0px;"><strong>від 9 серпня 2023 р. </strong></span><br>
+
+</div>
+</div>
+<div style="clear: both"></div>
+
+<p style="display:block; margin:5px; line-height:5px;"></p>
+<div style="text-align:left;"><span
+ style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;"><strong>Виконавець:</strong></span></div>
+<div style="text-align:left"><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt">ПП"Науково-виробнича компанія"Інтелект-Проект"</span>
+</div>
+<!--<div style="text-align:left"><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt">р/р 26003011210737 в АТ КБ "ПРИВАТБАНК" МФО 331401 </span></div>-->
+<!-- Сороколит И. убрал в связи со сменой р/р на IBAN -->
+<div style="text-align:left"><span
+ style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt">IBAN UA943052990000026003011210737</span></div>
+<div style="text-align:left"><span
+ style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt">ЄДРПОУ:&nbsp;36396714</span></div>
+<div style="text-align:left">
+<span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:9pt">Є платником єдиного податку (3 група, ставка 5 %)</span>
+</div>
+<div style="text-align:left">
+ <span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:9pt"><div style="text-align:left"><span style="font-family:Nunito Sans, Times New Roman,Times,serif; 
+font-size:9pt">вул. Р. Кириченко, 4, оф.2, м. Полтава, Полтавська область, 36039, Україна</span></div></span>
+</div>
+
+<div style="text-align:left">
+<span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt"><strong>Замовник:</strong></span></div>
+<div style="float:left; width:120px"><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt">Назва організації:</span>
+</div>
+<div><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt">Сумська регiональна державна лабораторiя Державної служби України з питань безпечності харчових продуктів та захисту споживачів</span></div>
+<div style="clear: both"></div>
+<div style="float:left; width:60px"><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt">ЄДРПОУ:</span>
+</div>
+<div><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt">&nbsp;00720148</span></div>
+<div style="clear: both"></div>
+</div></div>
+<!--<div style="width:100%">
+<div style="float:right; text-align:left; width:50%; padding-top: 50px; ">
+<span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt; padding-left: 5px;">Контактна інформація за телефонами:<br>
+ГК “Інтелектуальний сервіс” -
+прості рішення складних задач
+intelserv.net.ua
+(095) 0364004<br>
+(098) 0364004<br>
+(073) 0364004<br>
+Отримати рахунок можна на сайті:<br>
+https://intelserv.net.ua<br></span>
+</div>-->
+<!-- <div style="float:left; text-align:right; width:50%; padding-top: 15px;">
+<span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt; padding-left: 5px;"> Ми турбуємося про збереження навколишнього середовища, тому замінили паперовий рахунок-фактуру на електронний.
+Однією з переваг цієї заміни є те, що ви ніколи не загубите його і він буде доступний у будь-яку мить.
+Користуйтеся електронним документообміном - це екологічно та зручно!<br>
+</span>
+
+</div>-->
+
+
+<!--<div style="clear: both">
+
+<div style="width:100%">
+<div style="float:left; text-align:left; width:50%; padding-top: 15px;">
+<span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:16pt; padding-left: 5px;"><strong>Рахунок-фактура № ПИП026091</strong></span><br>
+<span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:14pt; padding-left: 5px;"><strong>від 9 серпня 2023 р. </strong></span>
+</div>
+</div>
+<div style="clear: both"></div>
+<p style="display:block; margin:5px; line-height:5px;"></p>
+<div style="text-align:left;"><span
+style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;"><strong>Виконавець:</strong></span></div>
+<div style="text-align:left"><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt">ПП"Науково-виробнича компанія"Інтелект-Проект"</span>
+</div>
+&lt;!&ndash;<div style="text-align:left"><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt">р/р 26003011210737 в АТ КБ "ПРИВАТБАНК" МФО 331401 </span></div>&ndash;&gt;
+&lt;!&ndash; Сороколит И. убрал в связи со сменой р/р на IBAN &ndash;&gt;
+<div style="text-align:left"><span
+style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt">IBAN UA943052990000026003011210737</span></div>
+<div style="text-align:left"><span
+style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt">ЄДРПОУ: 36396714</span></div>
+<div style="text-align:left"><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt">Є платником єдиного податку (3 група, ставка 5 %)</span>
+</div>
+<div style="text-align:left"><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt"><div style="text-align:left"><span style="font-family:Nunito Sans, Times New Roman,Times,serif; 
+font-size:9pt">вул. Р. Кириченко, 4, оф.2, м. Полтава, Полтавська область, 36039, Україна</span></div></span></div>
+
+<div style="text-align:left"><span
+style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt"><strong>Замовник:</strong></span></div>
+<div style="float:left; width:15%"><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt">Назва організації:</span>
+</div>
+<div><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt">Сумська регiональна державна лабораторiя Державної служби України з питань безпечності харчових продуктів та захисту споживачів</span></div>
+<div style="clear: both"></div>
+<div style="float:left; width:15%"><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt">ЄДРПОУ:</span>
+</div>
+<div><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt">00720148</span></div>
+<div style="clear: both"></div>
+</div>-->
+
+<table id="tableNoPdv" style="border-spacing: 0px;  width: 100%; border-collapse: collapse; ">
+                   <tr>
+                       <td style="vertical-align: middle;  width: 3%; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; text-align: center">
+                           <b>№</b></td>
+                       <td style="vertical-align: middle;  width: 59%; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; text-align: center">
+                           <b>Найменування товару,послуги</b></td>
+                       <td style="vertical-align: middle; width: 8%; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; text-align: center">
+                           <b>Одиниця<br>виміру</b></td>
+                       <td style="vertical-align: middle; width: 8%; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; text-align: center">
+                           <b>К-сть</b></td>
+                       <td style="vertical-align: middle; width: 10%; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; text-align: center">
+                           <b>Ціна&nbsp;<br>без&nbsp;ПДВ</b></td>
+                       <td style="vertical-align: middle; width: 13%; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; text-align: center">
+                           <b>Сума <br>без ПДВ</b></td>
+                   </tr>
+                   <tr><td style="text-align: center; vertical-align: middle; border:1px solid black; 
+                font-family:Nunito Sans, Times New Roman,Times,serif; font-size:12pt;">1</td>
+               <td style="vertical-align: middle; border:1px solid black; 
+                font-family:Nunito Sans, Times New Roman,Times,serif; font-size:12pt;">Постачання примірника та пакетів оновлень (компонентів) комп'ютерної програми "M.E.Doc" з правом використання на рік (Модуль "Звітність") Акція <span class="setDate"></span></td>
+               <td style="text-align: center; vertical-align: middle; border:1px solid black; 
+                font-family:Nunito Sans, Times New Roman,Times,serif; font-size:12pt;">шт.</td>
+               <td style="text-align: center; vertical-align: middle; border:1px solid black; 
+                font-family:Nunito Sans, Times New Roman,Times,serif; font-size:12pt;">1.00</td>
+               <td style="text-align: center; vertical-align: middle; border:1px solid black; 
+                font-family:Nunito Sans, Times New Roman,Times,serif; font-size:12pt;">
+                2500.00</td>
+               <td style="text-align: right; vertical-align: middle; border:1px solid black; 
+                font-family:Nunito Sans, Times New Roman,Times,serif; font-size:12pt;"><b>2500.00</b></td></tr><tr>
+<td colspan="2" style="border: none; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;"></td>
+<td colspan="3"
+   style="vertical-align: middle; border-collapse:collapse; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;">
+   <b>Разом без ПДВ:</b></td>
+<td style="text-align: right; vertical-align: middle; border-collapse:collapse; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;">
+   <b>2500.00</b></td>
+</tr>
+<tr>
+<td colspan="2" style="border: none; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;"></td>
+<td colspan="3"
+   style="vertical-align: middle; border-collapse:collapse; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;">
+   <b>ПДВ:</b></td>
+<td style="text-align: right; vertical-align: middle; border-collapse:collapse; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;">
+   <b>0.00</b></td>
+</tr>
+<tr>
+<td colspan="2" style="border: none; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;"></td>
+<td colspan="3"
+   style="vertical-align: middle; border-collapse:collapse; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;">
+   <b>Разом&nbsp;з ПДВ:</b></td>
+<td style="text-align: right; vertical-align: middle;  border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;">
+   <b>2500.00</b></td>
+</tr>
+</table>
+
+
+
+<p style="display:block; margin:15px; line-height:15px;"></p>
+<div style="text-align:right;"><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:13pt;"><strong>Разом до сплати: 2500.00 грн.</strong></span>
+</div>
+<div style="text-align:right;"><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;"><strong>(Дві тисячі п'ятсот грн.  00 коп.)</strong></span>
+</div>
+<div style="text-align:right;"><span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;"><strong>ПДВ: 0.00 грн. (00 коп.)</strong></span>
+</div>
+<div style="text-align:right; margin-left: 65%; %scanStampDoc">
+<p style="display:block; margin:15px; line-height:15px;">&nbsp;</p>
+<p style="display:block; margin:15px; line-height:15px;">&nbsp;</p>
+<div></div>
+
+<span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:14pt;">Виписав(ла):______________________</span>
+<p style="display:block; margin:15px; line-height:15px;"></p>
+<p style="display:block; margin:15px; line-height:15px;"></p>
+</div>
+
+
+<!--<div id="dopInfo" style="display: none; background-color: #A6E194; border: 1px solid transparent; border-radius: .25rem; margin-bottom: 0px;">
+<p style="display: none; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:14pt; text-align: center; margin-top: 0px; margin-bottom: 3px; margin-left: 5px;"><strong>ВАЖЛИВО!!!</strong></p>
+<p style="display: none; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; text-align: center; margin-top: 0px; margin-left: 5px;"><strong>
+Спеціальна пропозиція для нових  клієнтів:<br>
+купуй комплект модулів M.E.Doc "Зарплата" + M.E.Doc "Звітність" та отримай знижку на модуль M.E.Doc "Звітність" - 50%".<br>
+Зателефонуй вже зараз або залиш заявку за посиланням  https://intelserv.net.ua/promotions.</strong>
+</p>
+</div>-->
+<div style="background-color: #fff1cc; border: 1px solid transparent; border-radius: .25rem; margin-bottom: 0px; border: 1px solid #080809">
+<p style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt; text-align: center; margin-top: 0px; margin-bottom: 3px; margin-left: 5px;">
+<strong>Зверніть увагу!</strong></p>
+<p style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt; text-align: center; margin-top: 0px; margin-bottom: 3px; margin-left: 5px;">
+Заповнювати платіжне доручення необхідно виключно українською мовою!</p>
+<p style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:10pt; margin-top: 0px; margin-left: 5px;">
+Для прискорення процесу отримання послуги просимо Вас під час заповнення платіжного доручення
+в графі "Призначення платежу" вказувати префікс та порядковий номер рахунку-фактури повністю
+та без відступів <b>(рах. №ПИП026091")</b>.</p>
+</div>
+<div>
+<!-- <p style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; margin-top: 0px; margin-left: 5px;">Оплачуючи рахунок Покупець дає згоду:</p>-->
+<div style="text-align:justify">
+<span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:9pt">Оплачуючи рахунок Покупець дає згоду: <br>1. Отримувати всі документи від Постачальника в електронному вигляді з накладанням електронно підпису.</span></div>
+<div style="text-align:justify">
+<span style="font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:9pt">2. Акти виконаних робіт підписані електронно підписом будуть відправлені Покупцю в систему електронного
+документообігу M.E.Doc або СОТА на наступний день після оплати. </span>
+<p id="dopTextAcsk" style=" display: none; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; margin-top: 0px; margin-left: 5px; margin-bottom: 3px;"><strong>Формування КЕП можливе одним з чотирьох наступних варіантів:</strong><br>
+1. Клієнт сплачує рахунок на надання послуг генерації та активації КЕП у себе в офісі;<br>
+2. Клієнт звертається до офісу АЦСК для надання йому послуг генерації та активації КЕП;<br>
+3. Клієнт самостійно формує КЕП і з повним пакетом документів звертається в офіс АЦСК для надання послуги активації КЕП;<br>
+4. При наявності діючих сертифікатів КЕП є можливість продовжити дію сертифікатів без пакету документів (за умови, що на підприємстві не було змін адреси, керівників чи назви),  відправивши заявки через ПО Медок.</p></div>
+</div>
+
+
+
+
+                </div>
+
+                <div id="shablon2" style="margin-left: 15px; margin-right: 15px;">
+                                            </div>
+
+                <div id="shablonAct" style="margin-left: 15px; margin-right: 15px;">
+                    <div style="page-break-after:always"></div><div style="float:left; width:18%; min-width: 25px;"><span style="font-family:Times New Roman,Times,serif; font-size:14pt"><b>Постачальник:</b></span></div>
+<div><span style="font-family:Times New Roman,Times,serif; font-size:14pt"><b>ПП"Науково-виробнича компанія"Інтелект-Проект"</b></span></div>
+<div style="clear: both"></div>
+<div style="float:left; width:18%"><span style="font-family:Times New Roman,Times,serif; font-size:11pt">ЄДРПОУ:</span></div>
+<div><span style="font-family:Times New Roman,Times,serif; font-size:11pt">36396714</span></div>
+<div style="clear: both"></div>
+<div style="float:left; width:18%"><span style="font-family:Times New Roman,Times,serif; font-size:11pt">Адреса:</span></div>
+<div><span style="font-family:Times New Roman,Times,serif; font-size:11pt"><div style="text-align:left"><span style="font-family:Times New Roman,Times,serif; 
+font-size:11pt">вул. Р. Кириченко, 4, оф.2, м. Полтава, Полтавська область, 36039, Україна</span></div></span></div>
+<div style="clear: both"></div>
+<div style="float:left; width:18%"><span style="font-family:Times New Roman,Times,serif; font-size:11pt">Реквізити:</span></div>
+<!--<div><span style="font-family:Times New Roman,Times,serif; font-size:11pt">р/р 26003011210737 в АТ КБ "ПРИВАТБАНК" МФО 331401</span></div>
+<div style="float:left; width:18%"><span style="font-family:Times New Roman,Times,serif; font-size:11pt">&nbsp;</span></div>-->
+<!-- Сороколит И. убрал в связи со сменой р/р на IBAN -->
+<div><span style="font-family:Times New Roman,Times,serif; font-size:11pt">АТ КБ "ПРИВАТБАНК"
+IBAN UA943052990000026003011210737  
+</span></div>
+<div style="clear: both"></div>
+<div style="float:left; width:18%"><span style="font-family:Times New Roman,Times,serif; font-size:11pt">&nbsp;</span></div>
+<div><span style="font-family:Times New Roman,Times,serif; font-size:11pt">Є платником єдиного податку (3 група, ставка 5 %)</span></div>
+<div style="clear: both"></div>
+
+<div style="float:left; width:18%"><span style="font-family:Times New Roman,Times,serif; font-size:14pt"><b>Замовник:</b></span></div>
+<div><span style="font-family:Times New Roman,Times,serif; font-size:14pt"><b>Сумська регiональна державна лабораторiя Державної служби України з питань безпечності харчових продуктів та захисту споживачів</b></span></div>
+<div style="clear: both"></div>
+<div style="float:left; width:18%"><span style="font-family:Times New Roman,Times,serif; font-size:11pt">ЄДРПОУ:</span></div>
+<div><span style="font-family:Times New Roman,Times,serif; font-size:11pt">00720148</span></div>
+<div style="clear: both"></div>
+<div style="float:left; width:18%"><span style="font-family:Times New Roman,Times,serif; font-size:11pt">Адреса:</span></div>
+<div><span style="font-family:Times New Roman,Times,serif; font-size:11pt">40009, Сумська обл., місто Суми, ВУЛИЦЯ ЛЮБЛІНСЬКА, будинок 17</span></div>
+<div style="clear: both"></div>
+<div style="float:left; width:18%"><span style="font-family:Times New Roman,Times,serif; font-size:11pt">Підстава:</span></div>
+<div><span style="font-family:Times New Roman,Times,serif; font-size:11pt">Рахунок-фактура №ПИП026091 від 9 серпня 2023 р. </span></div>
+<div style="clear: both"></div>
+
+<div style="text-align:center"><span style="font-family:Times New Roman,Times,serif; font-size:14pt"><strong><br>Акт здачі-прийняття робіт (послуг) №ПИП114409</strong></span></div>
+
+<div style="float:left; width:50%; margin-left:15px;"><span style="font-family:Times New Roman,Times,serif; font-size:11pt"><b><br>м. Полтава</b></span></div>
+<div style="text-align:right; margin-right:15px;"><span style="font-family:Times New Roman,Times,serif; font-size:11pt"><b><br>від 9 серпня 2023 р. </b></span></div>
+<div style="clear: both"></div>
+
+<p style="display:block; line-height:5px;">&nbsp;</p>
+
+<div style="text-align:justify;"><span style="font-family:Times New Roman,Times,serif; font-size:11pt">Ми, які підписалися нижче, представник "Замовника" ____________________________________________________ з одного боку, та представник "Постачальника" директор Горбатько Олексій Григорійович, що діє на підставі статуту з іншого боку, склали даний акт про те, що Постачальником були проведені наступні роботи (послуги):</span></div>
+
+
+<p style="display:block; margin:15px; line-height:15px;"></p>
+
+<table id="tableNoPdv" style="border-spacing: 0px;  width: 100%; border-collapse: collapse; ">
+                   <tr>
+                       <td style="vertical-align: middle;  width: 3%; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; text-align: center">
+                           <b>№</b></td>
+                       <td style="vertical-align: middle;  width: 59%; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; text-align: center">
+                           <b>Найменування товару,послуги</b></td>
+                       <td style="vertical-align: middle; width: 8%; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; text-align: center">
+                           <b>Одиниця<br>виміру</b></td>
+                       <td style="vertical-align: middle; width: 8%; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; text-align: center">
+                           <b>К-сть</b></td>
+                       <td style="vertical-align: middle; width: 10%; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; text-align: center">
+                           <b>Ціна&nbsp;<br>без&nbsp;ПДВ</b></td>
+                       <td style="vertical-align: middle; width: 13%; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt; text-align: center">
+                           <b>Сума <br>без ПДВ</b></td>
+                   </tr>
+                   <tr><td style="text-align: center; vertical-align: middle; border:1px solid black; 
+                font-family:Times New Roman,Times,serif; font-size:11pt;">1</td>
+               <td style="vertical-align: middle; border:1px solid black; 
+                font-family:Times New Roman,Times,serif; font-size:11pt;">Постачання примірника та пакетів оновлень (компонентів) комп'ютерної програми "M.E.Doc" з правом використання на рік (Модуль "Звітність") Акція <span class="setDate"></span></td>
+               <td style="text-align: center; vertical-align: middle; border:1px solid black; 
+                font-family:Times New Roman,Times,serif; font-size:11pt;">шт.</td>
+               <td style="text-align: center; vertical-align: middle; border:1px solid black; 
+                font-family:Times New Roman,Times,serif; font-size:11pt;">1.00</td>
+               <td style="text-align: center; vertical-align: middle; border:1px solid black; 
+                font-family:Times New Roman,Times,serif; font-size:11pt;">
+                2500.00</td>
+               <td style="text-align: right; vertical-align: middle; border:1px solid black; 
+                font-family:Times New Roman,Times,serif; font-size:11pt;"><b>2500.00</b></td></tr><tr>
+<td colspan="2" style="border: none; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;"></td>
+<td colspan="3"
+   style="vertical-align: middle; border-collapse:collapse; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;">
+   <b>Разом без ПДВ:</b></td>
+<td style="text-align: right; vertical-align: middle; border-collapse:collapse; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;">
+   <b>2500.00</b></td>
+</tr>
+<tr>
+<td colspan="2" style="border: none; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;"></td>
+<td colspan="3"
+   style="vertical-align: middle; border-collapse:collapse; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;">
+   <b>ПДВ:</b></td>
+<td style="text-align: right; vertical-align: middle; border-collapse:collapse; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;">
+   <b>0.00</b></td>
+</tr>
+<tr>
+<td colspan="2" style="border: none; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;"></td>
+<td colspan="3"
+   style="vertical-align: middle; border-collapse:collapse; border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;">
+   <b>Разом&nbsp;з ПДВ:</b></td>
+<td style="text-align: right; vertical-align: middle;  border:1px solid black; font-family:'Nunito Sans',Times New Roman,Times,serif; font-size:11pt;">
+   <b>2500.00</b></td>
+</tr>
+</table>
+
+
+
+<p style="display:block; margin:15px; line-height:15px;"></p>
+<div style="text-align:left;"><span style="font-family:Times New Roman,Times,serif; font-size:14pt;"><strong>Разом до сплати: 2500.00 (Дві тисячі п'ятсот грн.  00 коп.).</strong></span></div>
+<div style="text-align:left;"><span style="font-family:Times New Roman,Times,serif; font-size:11pt;"><strong>ПДВ: 0.00 грн. (00 коп.).</strong></span></div>
+<p style="display:block; margin:15px; line-height:15px;"><br>&nbsp;</p>
+
+<div style="width:100%">
+<div style="float:left; text-align:center; width:50%; padding-top: 15px; %scanStampDoc">
+<span style="font-family:Times New Roman,Times,serif; font-size:14pt; padding-left: 5px;"><b>Від Постачальника:</b></span><br><br>
+<span style="font-family:Times New Roman,Times,serif; font-size:11pt; padding-left: 5px;">директор Горбатько Олексій Григорійович</span><br><br><br>
+<span style="font-family:Times New Roman,Times,serif; font-size:11pt; padding-left: 5px;">___________________________</span><br>
+<span style="font-family:Times New Roman,Times,serif; font-size:11pt; padding-left: 5px;">9 серпня 2023 р. </span><br>
+<span style="font-family:Times New Roman,Times,serif; font-size:11pt; padding-left: 5px;">М.П.</span>
+</div>
+<div style="float:left; text-align:center; width:50%; padding-top: 15px;">
+<span style="font-family:Times New Roman,Times,serif; font-size:14pt; padding-left: 5px;"><b>Від Замовника:</b></span><br><br>
+<span style="font-family:Times New Roman,Times,serif; font-size:11pt; padding-left: 5px;">________________________________________________</span><br><br><br>
+<span style="font-family:Times New Roman,Times,serif; font-size:11pt; padding-left: 5px;">___________________________</span><br>
+<span style="font-family:Times New Roman,Times,serif; font-size:11pt; padding-left: 5px;">9 серпня 2023 р. </span><br>
+<span style="font-family:Times New Roman,Times,serif; font-size:11pt; padding-left: 5px;">М.П.</span>
+</div>
+
+</div>
+<div style="clear: both"></div>                        </div>
+
+                <div id="shablonDogActive" style="margin-left: 15px; margin-right: 15px;">
+                                            </div>
+
+                <div id="shablonDog" style="margin-left: 15px; margin-right: 15px;">
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--МОДАЛКА
+        <div id="modalEmail" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <div id="redactorSaveText">
+                            <p style="margin-left: 15px; margin-top: 10px;"><b></b></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer" id="waitReload">
+                       <input type="hidden" name="step" value="3">
+                         <button  type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+-->
+
+</main>
+
+
+<script>
+var agentIdB;
+
+// Экспорт в PDF счетов
+function expPDF() {
+    var signSSL = 1;
+    var newPage = "<div style=\"page-break-after:always\"></div>";
+    /*
+                if (printAct.checked) {
+                    var textForExp = $('#shablon').html() + $('#shablon2').html() + $('#shablonAct').html() + $('#shablonDogActive').html() + $('#shablonDog').html();
+                } else {
+                    $('#shablonAct').empty();
+                    var textForExp = $('#shablon').html() + $('#shablon2').html() + $('#shablonAct').html() + $('#shablonDogActive').html() + $('#shablonDog').html();
+                }
+    */
+
+    if (!printAct.checked) {
+        $('#shablonAct').empty();
+    }
+
+    if (!listDocAcsk.checked) {
+        $('#shablon2').empty();
+    }
+
+    var textForExp = $('#shablon').html() + $('#shablon2').html() + $('#shablonAct').html() + $('#shablonDogActive').html() + $('#shablonDog').html();
+
+    //var textForExp = $('#shablon').html() + $('#shablon2').html() + $('#shablonAct').html()+ newPage + $('#shablonDogActive').html() + $('#shablonDog').html();
+    var docNumber = ('ПИП026091 ');
+    var titlePage = ('Рахунок-фактура ');
+    var forFileName = ('Check№ ');
+    var scanStampCd = ('36396714 ');
+    $.ajax({
+        url: '/uip/product-action',
+        type: 'POST',
+        data: {
+            step: 2, html: textForExp, docNumber: docNumber, titlePage: titlePage, forFileName: forFileName
+            , signSSL: signSSL
+            , scanStampCd: scanStampCd
+        },
+        success: function (data) {
+
+            var link = document.createElement('a');
+            link.setAttribute('href', data);
+            link.setAttribute('download', 'Рахунок-фактура №ПИП026091');
+            link.click();
+
+        }
+    })
+}
+
+function mailPDF() {
+    var newPage = "<div style=\"page-break-after:always\"></div>";
+    var docNumber = ('ПИП026091 ');
+    var titlePage = ('Рахунок-фактура ');
+    var forFileName = ('Check№ ');
+    var checkId = ('15774d47e1b5029f7947f1fd6f3954c7 ');
+    var scanStampCd = ('36396714 ');
+    // var textForExp = $('#shablon').html() + $('#shablon2').html() + $('#shablonAct').html() + newPage + $('#shablonDogActive').html() + $('#shablonDog').html();
+    if (printAct.checked) {
+        var textForExp = $('#shablon').html() + $('#shablon2').html() + $('#shablonAct').html() + $('#shablonDogActive').html() + $('#shablonDog').html();
+    } else {
+        $('#shablonAct').empty();
+        var textForExp = $('#shablon').html() + $('#shablon2').html() + $('#shablonAct').html() + $('#shablonDogActive').html() + $('#shablonDog').html();
+    }
+    var email = $('#inputEmail').val();
+
+    console.log($('#shablon').html());
+
+    $.ajax({
+        url: '/uip/product-action',
+        type: 'POST',
+        data: {
+            step: 3, html: textForExp, docNumber: docNumber, titlePage: titlePage,
+            forFileName: forFileName, agentEmail: email, checkId: checkId, typeDoc: 1
+            , scanStampCd: scanStampCd
+        },
+        success: function (data) {
+
+            alert('Документ відправлено. Створена взаємодія.');
+            $('#inputEmail').val('');
+        }
+    })
+    //$('#inputEmail').val('');
+    $('#buttonMail').prop('disabled', true);
+    $('#buttonMail').removeClass('btn-success').addClass('btn-danger');
+    $('#inputEmail').prop('placeholder', '... документ відправлено');
+}
+
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // var re = /^[\w\.\d-_]+@[\w\.\d-_]+\.\w{2,30}$/iu;
+    return re.test(email);
+}
+
+function validate() {
+    var email = $('#inputEmail').val();
+    if (validateEmail(email)) {
+        $('#buttonMail').removeClass('btn-danger').addClass('btn-success');
+        $('#buttonMail').prop('disabled', false);
+        $('#inputEmail').removeClass('alert-danger');
+    } else {
+        $('#buttonMail').removeClass('btn-success').addClass('btn-danger');
+        $('#buttonMail').prop('disabled', true);
+        $('#inputEmail').addClass('alert-danger');
+    }
+    return false;
+}
+
+function setBudgetDate() {
+    var signBudget = $('#Budget:checked').val();
+    var bud = ('_____________  р. ');
+    var budyearend = ('__________________ р.');
+    var yearend = '08';
+    var budNo = ('9 серпня 2023 р. ');
+    var budAct = ('_____________ р. ');
+    var budNoAct = ('9 серпня 2023 р. ');
+    if  ((signBudget == 1) && (yearend == 12)) {
+        var replaced = $('#shablon').html().replace(budNo, budyearend);
+        replaced = replaced.replace(budNo, budyearend);
+        replaced = replaced.replace(budNo, budyearend);
+        $('#shablon').html(replaced);
+    } else if ((signBudget == 1) && (yearend != 12)) {
+        var replaced = $('#shablon').html().replace(budNo, bud);
+        replaced = replaced.replace(budNo, bud);
+        replaced = replaced.replace(budNo, bud);
+        $('#shablon').html(replaced);
+    }
+    else {
+        var replaced = $('#shablon').html().replace(bud, budNo);
+        replaced = replaced.replace(bud, budNo);
+        replaced = replaced.replace(bud, budNo);
+        replaced = replaced.replace(budyearend, budNo);
+        replaced = replaced.replace(budyearend, budNo);
+        $('#shablon').html(replaced);
+    }
+    if (signBudget == 1) {
+        var replaced = $('#shablonAct').html().replace(budNo, bud);
+        replaced = replaced.replace(budNoAct, budAct);
+        replaced = replaced.replace(budNoAct, budAct);
+        replaced = replaced.replace(budNoAct, budAct);
+        $('#shablonAct').html(replaced);
+    } else {
+        var replaced = $('#shablonAct').html().replace(bud, budNo);
+        replaced = replaced.replace(budAct, budNoAct);
+        replaced = replaced.replace(budAct, budNoAct);
+        replaced = replaced.replace(budAct, budNoAct);
+        $('#shablonAct').html(replaced);
+    }
+    if (signBudget == 1) {
+        var replaced = $('#shablonDogActive').html().replace(budNo, bud);
+        replaced = replaced.replace(budNo, bud);
+        replaced = replaced.replace(budNo, bud);
+        $('#shablonDogActive').html(replaced);
+    } else {
+        var replaced = $('#shablonDogActive').html().replace(bud, budNo);
+        replaced = replaced.replace(bud, budNo);
+        replaced = replaced.replace(bud, budNo);
+        $('#shablonDogActive').html(replaced);
+    }
+    if (signBudget == 1) {
+        var replaced = $('#shablonDog').html().replace(budNo, bud);
+        replaced = replaced.replace(budNo, bud);
+        replaced = replaced.replace(budNo, bud);
+        $('#shablonDog').html(replaced);
+    } else {
+        var replaced = $('#shablonDog').html().replace(bud, budNo);
+        replaced = replaced.replace(bud, budNo);
+        replaced = replaced.replace(bud, budNo);
+        $('#shablonDog').html(replaced);
+    }
+    //
+    if (signBudget == 1) {
+        var replaced = $('#shablonDog').html().replace(budNo, bud);
+        replaced = replaced.replace(budNo, bud);
+        replaced = replaced.replace(budNo, bud);
+        $('#shablonDog').html(replaced);
+    } else {
+        var replaced = $('#shablonDog').html().replace(bud, budNo);
+        replaced = replaced.replace(bud, budNo);
+        replaced = replaced.replace(bud, budNo);
+        $('#shablonDog').html(replaced);
+    }
+    if (signBudget == 1) {
+        var replaced = $('#shablonDog').html().replace(budNo, bud);
+        replaced = replaced.replace(budNo, bud);
+        replaced = replaced.replace(budNo, bud);
+        $('#shablonDog').html(replaced);
+    } else {
+        var replaced = $('#shablonDog').html().replace(bud, budNo);
+        replaced = replaced.replace(bud, budNo);
+        replaced = replaced.replace(bud, budNo);
+        $('#shablonDog').html(replaced);
+    }
+}
+
+function setAcskDoc() {
+    var dopText = $('#listDocAcsk:checked').val();
+    if (Number(dopText)==1) {
+        $('#shablon2').show();
+    } else {
+        $('#shablon2').hide();
+    }
+}
+
+function setPrintAct() {
+    if (printAct.checked) {
+        $('#shablonAct').show();
+    } else {
+        $('#shablonAct').hide();
+    }
+}
+
+function setPrintDate() {
+    var specDocDateBegin = ('  р.');
+    var specDocDateEnd = ('  р.');
+    if (printDate.checked) {
+        $('.setDate').append('(').append(specDocDateBegin).append(' - ').append(specDocDateEnd).append(')');
+    } else {
+        $('.setDate').empty();
+    }
+}
+
+function setPrintActiveDog() {
+    if (printDog.checked) {
+        $('#shablonDogActive').show();
+    } else {
+        $('#shablonDogActive').hide();
+    }
+}
+
+function setDivAcsk() {
+    var signAcsk = ('0');
+    if (signAcsk == '1') {
+        $('#divDopText').show();
+    } else {
+        $('#divDopText').hide();
+    }
+}
+
+function getShablonDog() {
+    var dogTypeId = $('#typeShablonDog').val();
+    var checkId = ('15774d47e1b5029f7947f1fd6f3954c7');
+    if (!dogTypeId || dogTypeId == 0) {
+        $('#shablonDog').empty();
+        $('#shablonDog').hide();
+    } else {
+        $.ajax({
+            url: '/uip/product-action',
+            type: 'POST',
+            data: {step: 4, dogTypeId: dogTypeId, checkId: checkId},
+            success: function (data) {
+                $('#shablonDog').empty().append('<div style="page-break-after:always"></div>').append(data);
+                $('#shablonDog').show();
+            }
+        })
+    }
+}
+
+// Создание Контактного лица в карточке контрагента (вызов модального окна)
+function addNewAgentOfficials(agentId) {
+    agentIdB = agentId;
+    $('#createNewAgentOfficials').modal('show');
+}
+
+// Создание Контактного лица в карточке контрагента
+function onCreateNewAgentOfficials() {
+    var createAgentOfficialsName = $('#createAgentOfficialsName').val();
+    var createAgentOfficialsPhone = $('#createAgentOfficialsPhone').val();
+    var createAgentOfficialsEmail = $('#createAgentOfficialsEmail').val();
+    var createAgentOfficialsPosition = $('#createAgentOfficialsPosition').val();
+
+
+    if (createAgentOfficialsEmail.length > 0) {
+        if (validateEmail(createAgentOfficialsEmail)) {
+            $('#createAgentOfficialsEmail').removeClass('is-invalid').addClass('is-valid');
+            officialsEmail = 1;
+        } else {
+            $('#createAgentOfficialsEmail').removeClass('is-valid').addClass('is-invalid');
+            officialsEmail = 0;
+        }
+    } else {
+        $('#createAgentOfficialsEmail').removeClass('is-invalid').addClass('is-valid');
+        officialsEmail = 1;
+    }
+
+
+    if (createAgentOfficialsName.length > 2) {
+        $('#createAgentOfficialsName').removeClass('is-invalid').addClass('is-valid');
+        officialsNameId = 1;
+    } else {
+        $('#createAgentOfficialsName').removeClass('is-valid').addClass('is-invalid');
+        officialsNameId = 0;
+    }
+    if (createAgentOfficialsPhone.length > 7) {
+        $('#createAgentOfficialsPhone').removeClass('is-invalid').addClass('is-valid');
+        phoneId = 1;
+    } else {
+        $('#createAgentOfficialsPhone').removeClass('is-valid').addClass('is-invalid');
+        phoneId = 0;
+    }
+
+    if ((phoneId + officialsNameId + officialsEmail) == 3) {
+
+        $.ajax({
+            url: '/uip/product-action',
+            type: 'POST',
+            data: {
+                step: 7,
+                agentId: agentIdB,
+                agentOfficialsName: createAgentOfficialsName,
+                agentOfficialsPhone: createAgentOfficialsPhone,
+                agentOfficialsEmail: createAgentOfficialsEmail,
+                agentOfficialsPosition: createAgentOfficialsPosition
+            },
+
+            success: function () {
+                $('#createNewAgentOfficials').modal('hide');
+                loadAgentOfficials(agentIdB);
+            }
+        });
+    }
+
+}
+
+// Обновление страницы после записи Контактного лица в базу
+function loadAgentOfficials(agentId) {
+    agentIdB = agentId;
+    window.location.reload();
+}
+
+// Обнуление select для выбора e-mail
+$(document).ready(function () {
+    $('#inputEmail').val('');
+});
+
+//Создание Взаємодії
+function taskCreate() {
+    var idAgent = ('2003');
+    var docNumber = ('ПИП026091 ');
+    var email = $('#inputEmail').val();
+    var docCheckId = ('374175');
+
+    $.ajax({
+        url: '/uip/product-action',
+        type: 'POST',
+        data: {
+            step: 8,
+            agentId: idAgent,
+            docNumber: docNumber,
+            typeDoc: 1,
+            agentEmail: email,
+            docCheckId: docCheckId
+        },
+        success: function (data) {
+            alert('Документ відправлено. Створена взаємодія.');
+        }
+    })
+    $('#inputEmail').val('');
+}
+
+setAcskDoc();
+getShablonDog();
+setDivAcsk();
+setPrintAct();
+setPrintActiveDog();
+addNewAgentOfficials();
+onCreateNewAgentOfficials();
+
+
+</script>
+
+
+<script>
+
+
+    new gnMenu(document.getElementById('gn-menu'));
+    
+    
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+</script>
+
+<script>
+    $(function () {
+        $(".setPhoneMask").mask("+38 (999) 999-99-99");
+    });
+
+    loadTaskCount();
+function loadTaskCount() {
+$.ajax({
+  url:'/uip/main-action',
+  type:'POST',
+  data:{step:1},
+  success:function (data) {
+      $('#taskBadge').empty().append(data);
+  }
+})
+
+}
+</script>
+
+</body>
+</html>
+
+        <div class="modal fade" id="createNewAgentOfficials" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Створити контактну особу
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-1 justify-content-start align-items-center">
+                    <div class="col-md-3 text-secondary text-right">
+                        ПІБ контактної особи
+                    </div>
+                    <div class="col-md-8 pr-0">
+                        <input type="text" class="form-control form-control-sm"
+                               name="createAgentOfficialsName"
+                               id="createAgentOfficialsName"
+                               placeholder="Іванов Іван Іванович" maxlength="50">
+                    </div>
+                </div>
+                <div class="row mt-1 justify-content-start align-items-center">
+                    <div class="col-md-3 text-secondary text-right">
+                        Телефон
+                    </div>
+                    <div class="col-md-4 pr-0">
+                        <input type="tel" class="form-control form-control-sm setPhoneMask"
+                               name="createAgentOfficialsPhone"
+                               id="createAgentOfficialsPhone"
+                               placeholder="+38 (073) 036-40-04">
+                    </div>
+                </div>
+                <div class="row mt-1 justify-content-start align-items-center">
+                    <div class="col-md-3 text-secondary text-right">
+                        Email
+                    </div>
+                    <div class="col-md-4 pr-0">
+                        <input type="email" class="form-control form-control-sm"
+                               name="createAgentOfficialsEmail"
+                               id="createAgentOfficialsEmail"
+                               placeholder="info@intelserv.net.ua">
+                    </div>
+                </div>
+                <div class="row mt-1 justify-content-start align-items-center">
+                    <div class="col-md-3 text-secondary text-right">
+                        Посада
+                    </div>
+                    <div class="col-md-8 pr-0">
+                        <input type="text" class="form-control form-control-sm"
+                               name="createAgentOfficialsPosition"
+                               id="createAgentOfficialsPosition"
+                               placeholder="Посада" maxlength="60">
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="onCreateNewAgentOfficials()">Створити
+                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Скасувати</button>
+            </div>
+        </div>
+    </div>
+
+</div>
