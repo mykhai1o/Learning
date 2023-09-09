@@ -881,16 +881,20 @@ function menu(event) {
 
 
 const searchForm = document.querySelector(".search__form");
+const searchButton = document.querySelector(".search__button");
 
 document.addEventListener("click", openSearch);
 
 function openSearch(event){
 	if (event.target.closest(".search__button")) {
-		searchForm.classList.toggle('search__form-action')
+		searchForm.classList.toggle('search__form-action');
+		searchButton.classList.toggle('search__button-action');
 	};
 	if (!event.target.closest(".search")) {
-		searchForm.classList.remove('search__form-action')
+		searchForm.classList.remove('search__form-action');
+		searchButton.classList.remove('search__button-action');
 	};
+	
 
 };
 

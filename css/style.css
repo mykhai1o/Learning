@@ -95,6 +95,11 @@ button._active {
 	background-color: #7a956b;
 	padding: 15px;
 }
+   
+
+
+
+
 
 .menu {
 	display: inline-block;
@@ -132,6 +137,12 @@ button._active {
 .menu__link:hover {
 	text-decoration: none;
 }
+
+
+
+
+
+
 
 .block-for-mouse {
 	padding: 15px;
@@ -249,9 +260,12 @@ button._active {
 .search__button span:last-child{
 	display: none;
 }
-/*.search__form-action .search__button span:first-child{
+
+.search__button-action span:first-child {
 	display: none;
 }
-.search__form-action .search__button span:last-child{
+
+.search__button-action span:last-child {
 	display: block;
 }
+
