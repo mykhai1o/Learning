@@ -236,7 +236,7 @@ button._active {
 .search__form {
 	margin: 0;
 }
-
+/* !!!!!!!! */
 .search__form {
 	display: none;
 }
@@ -249,10 +249,14 @@ button._active {
 .search__form input{
 	width: 400px;
 	margin: 2px 0px 2px;
-	height: 200px;
+	height: 50px;
+	font-size: 24px;
+	margin-top: 10px;
 }
 
-
+.counter{
+	margin: 0px 0;
+}
 
 .search__button span:first-child{
 	display: block;
@@ -269,3 +273,7 @@ button._active {
 	display: block;
 }
 
+.search__input{
+	padding: 10px;
+	text-align: start;
+}

@@ -860,7 +860,10 @@ window.addEventListener("unload", function (e) {
 });
 */
 
+
 //========================================================================================================================================================
+
+/*
 const menuBody = document.querySelector('.menu');
 
 document.addEventListener("click", menu);
@@ -873,7 +876,7 @@ function menu(event) {
 		menuBody.classList.remove('_active');
 	}
 };
-
+*/
 
 
 //                   
@@ -894,8 +897,6 @@ function openSearch(event){
 		searchForm.classList.remove('search__form-action');
 		searchButton.classList.remove('search__button-action');
 	};
-	
-
 };
 
 document.addEventListener("keydown", function(event){
@@ -904,16 +905,43 @@ document.addEventListener("keydown", function(event){
 	};
 });
 
+const input = document.querySelector(".search__input");
+const inputSpan = document.querySelector(".counter span");
+
+const maxLength = input.getAttribute("maxlength");
+const lengthFact = input.value.length;
+const counter = maxLength - lengthFact;
+inputSpan.textContent = counter;
 
 
+input.addEventListener("keyup", countingLength);
+input.addEventListener("keydown", function(event){
+	if (event.repeat){
+		countingLength();
+	}
+});
 
+function countingLength (){
+	const counterResult = maxLength - input.value.length;
+	inputSpan.textContent = counterResult;
+}
 
+/*
+// Пример
+const txtItem = document.querySelector('.textarea__item');
+const txtItemLimit = txtItem.getAttribute('maxlength');
+const txtCounter = document.querySelector('.textarea__counter span');
+txtCounter.innerHTML = txtItemLimit;
 
+txtItem.addEventListener("keyup", txtSetCounter);
+txtItem.addEventListener("keydown", function (event) {
+	if (event.repeat) txtSetCounter();
+});
 
-
-
-
-
-
+function txtSetCounter() {
+	const txtCounterResult = txtItemLimit - txtItem.value.length;
+	txtCounter.innerHTML = txtCounterResult;
+}
+*/
 //========================================================================================================================================================
 //========================================================================================================================================================
