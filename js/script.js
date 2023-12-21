@@ -48,28 +48,48 @@
 //         console.log(typeof number);
 //        }
 
-new Promise(function (resolve, reject) {
-    // Ask the user for number using prompt()
-    const number = prompt("Enter a number");
-    // if the user did not enter a number - we call reject()
-    // if the user entered a number, we call resolve(number)
-    if(typeof +number === "number" && !isNaN(number)) {
-         resolve(number);
+// new Promise(function (resolve, reject) {
+//     // Ask the user for number using prompt()
+//     const number = prompt("Enter a number");
+//     // if the user did not enter a number - we call reject()
+//     // if the user entered a number, we call resolve(number)
+//     if(typeof +number === "number" && !isNaN(number)) {
+//          resolve(number);
+//     } 
+//     else {
+//          reject();
+//     }
+//  }).catch(function (error) {
+//     return new Promise(function (resolve, reject) {
+//         // Ask the user for a number until he enters it
+//         let number;
+//         while (isNaN(number)){
+//             number = prompt("Enter a number");
+//         }  
+//         // after entering the number - call resolve(number)
+//         resolve(number);
+//     });
+//  }).then(function (result) {
+//     // Print  number to the console
+//     console.log(result);
+//  });
+
+
+// const date = new Date();
+// console.log(5 <= date.getHours() && date.getHours < 12)
+
+function getMessage() {
+    // const os = require("os");
+    // const userName = os.userInfo().username;
+    const date = new Date();
+    if(5 <= date.getHours() && date.getHours < 12) {
+        return 'Good morning';
+    } else if(12 <= date.getHours() && date.getHours() < 17) {
+        return "Good afternoon";
+    } else if(18 <= date.getHours() && date.getHours() < 23) {
+        return "Good evening";
+    } else if(23 <= date.getHours() && date.getHours() < 5) {
+        return "Good night";
     } 
-    else {
-         reject();
-    }
- }).catch(function (error) {
-    return new Promise(function (resolve, reject) {
-        // Ask the user for a number until he enters it
-        let number;
-        while (isNaN(number)){
-            number = prompt("Enter a number");
-        }  
-        // after entering the number - call resolve(number)
-        resolve(number);
-    });
- }).then(function (result) {
-    // Print  number to the console
-    console.log(result);
- });
+}
+console.log(getMessage())
