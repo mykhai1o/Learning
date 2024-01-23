@@ -194,7 +194,14 @@ const checkLetter = function() {
     // }
 }
 
-inputButton.addEventListener("click", checkLetter);
+inputButton.addEventListener("click", function(e){
+        checkLetter();
+        if(!resultContainer.innerHTML.includes("_")) {
+            setTimeout( function() {
+                alert("Вітаю!")
+            }, 500);
+        }
+});
 document.addEventListener("keydown", function(e){
     if(e.key === 'Enter'){
         checkLetter();
